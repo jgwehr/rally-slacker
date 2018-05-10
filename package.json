@@ -4,11 +4,14 @@
   "description": "A Slack integration to the Rally Project Management tool",
   "main": "index.js",
   "dependencies": {
+    "@slack/client": "^4.2.0",
+    "express": "^4.16.3",
     "npm": "^6.0.0"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "node tutorial.js"
   },
   "repository": {
     "type": "git",
@@ -16,6 +19,9 @@
   },
   "author": "jgwehr",
   "license": "GPL-3.0",
+  "engines": {
+    "node": "8.11.1"
+  },
   "bugs": {
     "url": "https://github.com/jgwehr/rally-slacker/issues"
   },
