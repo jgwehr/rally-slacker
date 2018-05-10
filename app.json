@@ -1,0 +1,8 @@
+{
+  "name": "rally-slacker",
+  "description": "A Slack integration to the Rally Project Management tool",
+  "repository": "https://github.com/jgwehr/rally-slacker.git",
+  "logo": "https://cdn.rawgit.com/heroku/node-js-getting-started/master/public/node.svg",
+  "keywords": ["learning"],
+  "image": "heroku/nodejs"
+}
