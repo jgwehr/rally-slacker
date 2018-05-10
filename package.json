@@ -10,7 +10,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,9 @@
   },
   "author": "jgwehr",
   "license": "GPL-3.0",
+  "engines": {
+    "node": "8.11.1"
+  },
   "bugs": {
     "url": "https://github.com/jgwehr/rally-slacker/issues"
   },
