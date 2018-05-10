@@ -9,7 +9,7 @@
     "PAPERTRAIL_API_TOKEN": {
       "required": true
     },
-    "PORT": {
+    "SERVER_PORT": {
       "required": true
     },
     "SLACK_CLIENT_ID": {
