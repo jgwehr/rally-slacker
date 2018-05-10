@@ -1,13 +1,13 @@
 const { IncomingWebhook, WebClient } = require('@slack/client');
 
 const SLACK_WEBHOOK_TUTORIAL = process.env.SLACK_WEBHOOK_TUTORIAL;
-const SLACK_TOKEN_OAUTH = new WebClient(process.env.SLACK_TOKEN_OAUTH);
+const SLACK_TOKEN = new WebClient(process.env.SLACK_TOKEN_BOT);
 console.log(`SLACK_WEBHOOK_TUTORIAL=${SLACK_WEBHOOK_TUTORIAL}`);
-console.log(`SLACK_TOKEN_OAUTH=${SLACK_TOKEN_OAUTH}`);
+console.log(`SLACK_TOKEN=${SLACK_TOKEN}`);
 
 
-
-const web = new WebClient(process.env.SLACK_TOKEN_OAUTH);
+//Utility initilization
+const web = new WebClient(SLACK_TOKEN);
 const timeNotification = new IncomingWebhook(SLACK_WEBHOOK_TUTORIAL);
 const currentTime = new Date().toTimeString();
 
