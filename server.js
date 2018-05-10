@@ -6,7 +6,8 @@ const PORT = process.env.SERVER_PORT || 5000;
 //Slack setup and config
 const SLACK_CLIENT_ID           = process.env.SLACK_CLIENT_ID;
 const SLACK_CLIENT_SECRET       = process.env.SLACK_CLIENT_SECRET;
-const SLACK_OAUTH               = process.env.SLACK_OAUTH;
+const SLACK_TOKEN_OAUTH         = process.env.SLACK_TOKEN_OAUTH;
+const SLACK_TOKEN_BOT           = process.env.SLACK_TOKEN_BOT;
 const SLACK_VERIFICATION_TOKEN  = process.env.SLACK_VERIFICATION_TOKEN;
 const SLACK_WEBHOOK_TUTORIAL    = process.env.SLACK_WEBHOOK_TUTORIAL;
 
