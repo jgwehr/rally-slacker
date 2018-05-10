@@ -1,9 +1,7 @@
 //General Server Setup and config
 const express = require('express');
 const path = require('path');
-const CONCURRENCY = process.env.WEB_CONCURRENCY || 1; //Recommended by Heroku for clustering https://devcenter.heroku.com/articles/node-best-practices
-const PORT = process.env.PORT || 5000;
-const NODE_ENV = process.env.NODE_ENV;
+const PORT = process.env.SERVER_PORT || 5000;
 
 //Slack setup and config
 const SLACK_CLIENT_ID           = process.env.SLACK_CLIENT_ID;
@@ -12,8 +10,7 @@ const SLACK_VERIFICATION_TOKEN  = process.env.SLACK_VERIFICATION_TOKEN;
 const SLACK_WEBHOOK_TUTORIAL    = process.env.SLACK_WEBHOOK_TUTORIAL;
 const SLACK_OAUTH               = process.env.SLACK_OAUTH;
 
-
-console.log(`Environment Variables have been loaded`);
+console.log('Environment Variables loaded');
 
 //Express init
 var app = express();
