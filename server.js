@@ -35,7 +35,10 @@ app.route('/')
   });
 
 app.route('/rally/')
-   .post(function(req, res){
+   .post(function(err,req, res){
+      if(err){
+         res.send('Look now I handle errors');
+      }
       res.send('Received POST request to /rally/')
    });
 
