@@ -1,6 +1,7 @@
 //General Server Setup and config
 const express = require('express');
 const path = require('path');
+const { IncomingWebhook, WebClient } = require('@slack/client');
 const PORT = process.env.SERVER_PORT || 5000;
 
 //Slack setup and config
@@ -15,8 +16,8 @@ console.log('Environment Variables loaded');
 
 //Express init
 var app = express();
-app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(express.static(path.join(__dirname, 'public')));
 
 //Route setup
 app.route('/')
@@ -33,7 +34,16 @@ app.route('/')
     res.send('Got a DELETE request at /user')
   });
 
+app.route('/rally/')
+   .post(function(req, res){
+      res.send('Received POST request to /rally/')
+   });
+
 
 //Finish up and debug
-app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+app.listen(PORT, function(){
+   var host = app.address().address
+   var port = app.address().port
+   console.log("Example app listening at http://%s:%s", host, port)
+});
 console.log(`NODE_ENV=${process.env.NODE_ENV}`);
