@@ -41,7 +41,8 @@ controller.on('message_received', function(bot, message) {
   bot.reply(message,'Received');
 });
 controller.hears('US([0-9]{4})', ['direct_message','mention'], function (bot, message) {
-    bot.reply(message, 'I think I heard a user story!');
+  console.log("I heard something!");
+  bot.reply(message, 'I think I heard a user story!');
 });
 
 
