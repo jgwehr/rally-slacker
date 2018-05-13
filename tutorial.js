@@ -1,9 +1,10 @@
 const { IncomingWebhook, WebClient } = require('@slack/client');
 
 const SLACK_WEBHOOK_TUTORIAL = process.env.SLACK_WEBHOOK_TUTORIAL;
-const SLACK_TOKEN = new WebClient(process.env.SLACK_TOKEN_BOT);
+const SLACK_TOKEN = process.env.SLACK_TOKEN_BOT;
 console.log(`SLACK_WEBHOOK_TUTORIAL=${SLACK_WEBHOOK_TUTORIAL}`);
 console.log(`SLACK_TOKEN=${SLACK_TOKEN}`);
+console.log(`SLACK_TOKEN_BOT=${process.env.SLACK_TOKEN_BOT}`);
 
 
 //Utility initilization
