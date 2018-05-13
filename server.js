@@ -44,11 +44,11 @@ var controller = customIntegration.configure(SLACK_TOKEN, config, onInstallation
 /*
 Botkit listeners
 */
-// handle a channel join event
+console.log("Entering Botkit listner configuration");
 controller.on('message_received', function(bot, message) {
   bot.reply(message,'Received');
 });
-controller.hears('US([0-9]{4})', ['direct_message','mention'], function (bot, message) {
+controller.hears('US([0-9]{4})', ['ambient'], function (bot, message) {
   console.log("I heard something!");
   bot.reply(message, 'I think I heard a user story!');
 });
