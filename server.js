@@ -47,12 +47,12 @@ var controller = customIntegration.configure(SLACK_TOKEN, bot_config, onInstalla
 Botkit listeners
 */
 console.log("Entering Botkit listener configuration");
-controller.hears('US([0-9]{4})', ['ambient'], function (bot, message) {
-  console.log("I think I heard a user story!");
-  bot.replyInThread(message, 'I think I heard a user story!');
+
+//This loads all skill modules in the /skills/ directory
+var normalizedPath = require("path").join(__dirname, "skills");
+require("fs").readdirSync(normalizedPath).forEach(function(file) {
+  require("./skills/" + file)(controller);
 });
-
-
 
 
 
