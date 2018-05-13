@@ -29,17 +29,18 @@ var app = express();
 
 
 //Botkit config
-var config = {
+var bot_config = {
     //This should check if a db exists or not, also implicitly whether it's an app or a custom integration
     json_file_store: path.join(__dirname, '/.data/db/'),
     studio_token: BOTKIT_STUDIO_API,
     debug: DEBUG_TOGGLE,
+    scopes: ['bot'],
     clientId: SLACK_CLIENT_ID,
     clientVerificationToken: SLACK_VERIFICATION_TOKEN,
     clientSecret: SLACK_CLIENT_SECRET,
     disable_startup_messages: false
 };
-var controller = customIntegration.configure(SLACK_TOKEN, config, onInstallation);
+var controller = customIntegration.configure(SLACK_TOKEN, bot_config, onInstallation);
 
 
 /*
