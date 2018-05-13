@@ -7,7 +7,6 @@ const PORT = process.env.SERVER_PORT || 5000;
 //Custom Requirements
 var customIntegration = require('./lib/slack_custom_integration');
 
-
 //Slack setup and config
 const SLACK_CLIENT_ID           = process.env.SLACK_CLIENT_ID;
 const SLACK_CLIENT_SECRET       = process.env.SLACK_CLIENT_SECRET;
@@ -16,6 +15,15 @@ const SLACK_TOKEN_BOT           = process.env.SLACK_TOKEN_BOT;
 const SLACK_VERIFICATION_TOKEN  = process.env.SLACK_VERIFICATION_TOKEN;
 const SLACK_TOKEN               = process.env.SLACK_TOKEN_BOT || SLACK_TOKEN_OAUTH;
 
+//Slack config. Should come from incoming requests
+const conversationId = 'CAHDCR2LD';
+
+
+
+//Botkit setup and config
+const BOTKIT_STUDIO_API         = process.env.BOTKIT_STUDIO_API;
+
+
 console.log('Environment Variables loaded');
 
 //init
@@ -23,12 +31,11 @@ var app = express();
 const slackWeb = new WebClient(SLACK_TOKEN);
 
 
-//Slack config. Should come from incoming requests
-const conversationId = 'CAHDCR2LD';
 
 //Botkit config
 var config = {
-    json_file_store: ((process.env.TOKEN)?'./db_slack_bot_ci/':'./db_slack_bot_a/'), //use a different name if an app or CI
+    json_file_store: ((SLACK_TOKEN)?'./db_slack_bot_ci/':'./db_slack_bot_a/'), //use a different name if an app or CI
+    studio_token: BOTKIT_STUDIO_API
 };
 var controller = customIntegration.configure(SLACK_TOKEN, config, onInstallation);
 
