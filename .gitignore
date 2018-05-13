@@ -57,5 +57,5 @@ typings/
 # dotenv environment variables file
 .env
 
-#BotkitDatabse
-db_slack_bot_a/
+#BotkitDatabase
+.data/

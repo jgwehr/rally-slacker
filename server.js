@@ -30,7 +30,8 @@ var app = express();
 
 //Botkit config
 var config = {
-    json_file_store: ((SLACK_TOKEN)?'./db_slack_bot_ci/':'./db_slack_bot_a/'), //use a different name if an app or CI
+    //This should check if a db exists or not, also implicitly whether it's an app or a custom integration
+    json_file_store: path.join(__dirname, '/.data/db/'),
     studio_token: BOTKIT_STUDIO_API,
     debug: DEBUG_TOGGLE,
     clientId: SLACK_CLIENT_ID,
