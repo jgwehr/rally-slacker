@@ -1,19 +1,37 @@
 {
-  "name": "rally-slacker",
+  "addons": [
+    "papertrail",
+    "snyk"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
   "description": "A Slack integration to the Rally Project Management tool",
-  "scripts": {
-  },
   "env": {
+    "BOTKIT_STUDIO_API": {
+      "required": true
+    },
+    "DEBUG_TOGGLE": {
+      "required": true
+    },
     "PAPERTRAIL_API_TOKEN": {
       "required": true
     },
-    "PORT": {
+    "SERVER_PORT": {
       "required": true
     },
     "SLACK_CLIENT_ID": {
       "required": true
     },
     "SLACK_CLIENT_SECRET": {
+      "required": true
+    },
+    "SLACK_TOKEN_BOT": {
+      "required": true
+    },
+    "SLACK_TOKEN_OAUTH": {
       "required": true
     },
     "SLACK_VERIFICATION_TOKEN": {
@@ -25,13 +43,9 @@
       "quantity": 1
     }
   },
-  "addons": [
-    "papertrail",
-    "snyk"
-  ],
-  "buildpacks": [
-    {
-      "url": "heroku/nodejs"
-    }
-  ]
+  "image": "heroku/nodejs",
+  "logo": "http://node-js-sample.herokuapp.com/node.svg",
+  "name": "rally-slacker",
+  "scripts": {
+  }
 }
