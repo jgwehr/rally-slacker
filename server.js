@@ -11,6 +11,7 @@ const SLACK_TOKEN_OAUTH         = process.env.SLACK_TOKEN_OAUTH;
 const SLACK_TOKEN_BOT           = process.env.SLACK_TOKEN_BOT;
 const SLACK_VERIFICATION_TOKEN  = process.env.SLACK_VERIFICATION_TOKEN;
 const SLACK_WEBHOOK_TUTORIAL    = process.env.SLACK_WEBHOOK_TUTORIAL;
+// const SLACK_TOKEN               = process.env.SLACK_TOKEN_BOT || SLACK_TOKEN_OAUTH;
 
 console.log('Environment Variables loaded');
 
