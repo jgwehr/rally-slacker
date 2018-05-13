@@ -46,14 +46,15 @@ var controller = customIntegration.configure(SLACK_TOKEN, bot_config, onInstalla
 /*
 Botkit listeners
 */
-console.log("Entering Botkit listner configuration");
-controller.on('message_received', function(bot, message) {
-  bot.reply(message,'Received');
-});
+console.log("Entering Botkit listener configuration");
 controller.hears('US([0-9]{4})', ['ambient'], function (bot, message) {
-  console.log("I heard something!");
-  bot.reply(message, 'I think I heard a user story!');
+  console.log("I think I heard a user story!");
+  bot.replyInThread(message, 'I think I heard a user story!');
 });
+
+
+
+
 
 
 //Point to the public folder
