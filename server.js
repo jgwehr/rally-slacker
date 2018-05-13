@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const { IncomingWebhook, WebClient } = require('@slack/client');
 const PORT = process.env.SERVER_PORT || 5000;
+const DEBUG_TOGGLE = process.env.DEBUG_TOGGLE;
 
 //Custom Requirements
 var customIntegration = require('./lib/slack_custom_integration');
@@ -18,24 +19,24 @@ const SLACK_TOKEN               = process.env.SLACK_TOKEN_BOT || SLACK_TOKEN_OAU
 //Slack config. Should come from incoming requests
 const conversationId = 'CAHDCR2LD';
 
-
-
 //Botkit setup and config
 const BOTKIT_STUDIO_API         = process.env.BOTKIT_STUDIO_API;
 
 
-console.log('Environment Variables loaded');
-
 //init
 var app = express();
-const slackWeb = new WebClient(SLACK_TOKEN);
 
 
 
 //Botkit config
 var config = {
     json_file_store: ((SLACK_TOKEN)?'./db_slack_bot_ci/':'./db_slack_bot_a/'), //use a different name if an app or CI
-    studio_token: BOTKIT_STUDIO_API
+    studio_token: BOTKIT_STUDIO_API,
+    debug: DEBUG_TOGGLE,
+    clientId: SLACK_CLIENT_ID,
+    clientVerificationToken: SLACK_VERIFICATION_TOKEN,
+    clientSecret: SLACK_CLIENT_SECRET,
+    disable_startup_messages: false
 };
 var controller = customIntegration.configure(SLACK_TOKEN, config, onInstallation);
 
@@ -60,16 +61,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Route setup
 app.route('/')
   .get(function (req, res) {
-    slackWeb.chat.postMessage({
-      channel: conversationId,
-      text: 'I AM GROOT'
-    }).then((res) => {
-        console.log('Message sent: ', res.ts);
-    }).catch(console.error);
-    res.send('Found Rally');
+    res.send('Received GET request');
   })
   .post(function(req, res){
-    res.send('Received POST request to /rally')
+    res.send('Received POST request')
   })
   .put(function (req, res) {
     res.send('Got a PUT request at /rally')
