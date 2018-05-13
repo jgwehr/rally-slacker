@@ -1,1 +1,1 @@
-web: node tutorial.js
+web: node server.js
