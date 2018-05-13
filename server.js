@@ -32,8 +32,16 @@ var config = {
 };
 var controller = customIntegration.configure(SLACK_TOKEN, config, onInstallation);
 
-controller.hears('hello', 'direct_message', function (bot, message) {
-    bot.reply(message, 'Hello!');
+
+/*
+Botkit listeners
+*/
+// handle a channel join event
+controller.on('message_received', function(bot, message) {
+  bot.reply(message,'Received');
+});
+controller.hears('US([0-9]{4})', ['direct_message','mention'], function (bot, message) {
+    bot.reply(message, 'I think I heard a user story!');
 });
 
 
