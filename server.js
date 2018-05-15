@@ -1,6 +1,7 @@
 //General Server Setup and config
 const express       = require('express');
 const path          = require('path');
+const fs            = require('fs');
 const PORT          = process.env.SERVER_PORT || 5000;
 const DEBUG_TOGGLE  = process.env.DEBUG_TOGGLE;
 
@@ -50,9 +51,9 @@ Botkit listeners
 console.log("Loading bot's skills...");
 
 //This loads all skill modules in the /skills/ directory
-var skillsPath = require("path").join(__dirname, "skills");
-require("fs").readdirSync(skillsPath).forEach(function(file) {
-  require(skillsPath + '\\' + file)(botkitController);
+var skillsPath = path.join(__dirname, "skills");
+fs.readdirSync(skillsPath).forEach(function(file) {
+  require(skillsPath + path.sep + file)(botkitController);
 });
 
 
