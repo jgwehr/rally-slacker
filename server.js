@@ -1,12 +1,11 @@
 //General Server Setup and config
-const express = require('express');
-const path = require('path');
-const { IncomingWebhook, WebClient } = require('@slack/client');
-const PORT = process.env.SERVER_PORT || 5000;
-const DEBUG_TOGGLE = process.env.DEBUG_TOGGLE;
+const express       = require('express');
+const path          = require('path');
+const PORT          = process.env.SERVER_PORT || 5000;
+const DEBUG_TOGGLE  = process.env.DEBUG_TOGGLE;
 
 //Custom Requirements
-var botkit  = require('./lib/botkit');
+var botkit                      = require('./lib/botkit');
 
 //Slack setup and config
 const SLACK_CLIENT_ID           = process.env.SLACK_CLIENT_ID;
@@ -25,10 +24,6 @@ const conversationId = 'CAHDCR2LD';
 const BOTKIT_STUDIO_API         = process.env.BOTKIT_STUDIO_API;
 
 
-//init
-var app = express();
-
-
 
 //Botkit config
 var bot_config = {
@@ -39,13 +34,14 @@ var bot_config = {
     clientId: SLACK_CLIENT_ID,
     clientVerificationToken: SLACK_VERIFICATION_TOKEN,
     clientSecret: SLACK_CLIENT_SECRET,
-    debug: DEBUG_TOGGLE,
+    debug: false,
     disable_startup_messages: false
 };
 var botkitController = botkit.configure(SLACK_TOKEN, bot_config);
 
-var botRealTime = require('./lib/slack_custom_integration').configure(botkitController,SLACK_TOKEN);
 
+var botRealTime         = require('./lib/slack_custom_integration').configure(botkitController,SLACK_TOKEN);
+var express_webserver   = require('./lib/express_webserver')(botkitController,PORT);
 
 
 /*
@@ -58,3 +54,7 @@ var skillsPath = require("path").join(__dirname, "skills");
 require("fs").readdirSync(skillsPath).forEach(function(file) {
   require(skillsPath + '\\' + file)(botkitController);
 });
+
+
+
+console.log(`NODE_ENV=${process.env.NODE_ENV}`);
