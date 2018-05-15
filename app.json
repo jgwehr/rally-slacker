@@ -36,6 +36,9 @@
     },
     "SLACK_VERIFICATION_TOKEN": {
       "required": true
+    },
+    "NODE_ENV": {
+      "required": true
     }
   },
   "formation": {
