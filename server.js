@@ -2,7 +2,6 @@
 const express       = require('express');
 const path          = require('path');
 const fs            = require('fs');
-const PORT          = process.env.SERVER_PORT || 5000;
 const DEBUG_TOGGLE  = process.env.DEBUG_TOGGLE;
 
 //Custom Requirements
@@ -42,7 +41,7 @@ var botkitController = botkit.configure(SLACK_TOKEN, bot_config);
 
 
 var botRealTime         = require('./lib/slack_custom_integration').configure(botkitController,SLACK_TOKEN);
-var express_webserver   = require('./lib/express_webserver')(botkitController,PORT);
+var express_webserver   = require('./lib/express_webserver')(botkitController);
 
 
 /*
