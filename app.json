@@ -11,6 +11,7 @@
   "description": "A Slack integration to the Rally Project Management tool",
   "env": {
     "BOTKIT_STUDIO_API": {
+      "description": "Token associated with your bot in Botkit Studio",
       "required": true
     },
     "DEBUG_TOGGLE": {
@@ -20,9 +21,11 @@
       "required": true
     },
     "SLACK_CLIENT_ID": {
+      "description": "Client ID provided by Slack",
       "required": true
     },
     "SLACK_CLIENT_SECRET": {
+      "description": "Client Secret provided by Slack",
       "required": true
     },
     "SLACK_TOKEN_BOT": {
@@ -32,6 +35,7 @@
       "required": true
     },
     "SLACK_VERIFICATION_TOKEN": {
+      "description": "Provided by Slack. Verifies incoming messages are sent from Slack and not a third party.",
       "required": true
     },
     "NODE_ENV": {
