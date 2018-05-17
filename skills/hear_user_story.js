@@ -1,5 +1,6 @@
 module.exports = function(controller) {
-  controller.hears('US([0-9]{4})', ['ambient'], function (bot, message) {
+  var regex_userstory = /(US\s?[\d]{4})/gi;
+  controller.hears(regex_userstory, ['ambient'], function (bot, message) {
     console.log("I think I heard a user story!");
     bot.replyInThread(message, 'I think I heard a user story!');
   });
