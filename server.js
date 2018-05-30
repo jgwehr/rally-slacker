@@ -34,7 +34,8 @@ var bot_config = {
     clientId: SLACK_CLIENT_ID,
     clientVerificationToken: SLACK_VERIFICATION_TOKEN,
     clientSecret: SLACK_CLIENT_SECRET,
-    debug: false,
+    rtm_receive_messages: false,
+    debug: true,
     disable_startup_messages: false
 };
 var botkitController = botkit.configure(SLACK_TOKEN, bot_config);
