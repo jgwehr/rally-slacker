@@ -28,7 +28,6 @@ const BOTKIT_STUDIO_API         = process.env.BOTKIT_STUDIO_API;
 //Botkit config
 var bot_config = {
     //This should check if a db exists or not, also implicitly whether it's an app or a custom integration
-    json_file_store: path.join(__dirname, '/.data/db/'),
     studio_token: BOTKIT_STUDIO_API,
     scopes: ['bot'],
     clientId: SLACK_CLIENT_ID,
@@ -38,6 +37,7 @@ var bot_config = {
     debug: true,
     disable_startup_messages: false
 };
+    bot_options.json_file_store = path.join(__dirname, '/.data/db/'); // store user data in a simple JSON format
 var botkitController = botkit.configure(SLACK_TOKEN, bot_config);
 
 
