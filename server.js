@@ -44,6 +44,7 @@ var bot_config = {
 if (MONGODB_URI) {
     var mongoStorage = require('botkit-storage-mongo')({mongoUri: MONGODB_URI});
     bot_config.storage = mongoStorage;
+    console.log("Utilizing mongodb: "+ MONGODB_URI);
 } else {
     bot_config.json_file_store = path.join(__dirname, '/.data/db/'); // store user data in a simple JSON format
 }

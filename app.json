@@ -40,6 +40,10 @@
     },
     "NODE_ENV": {
       "required": true
+    },
+    "MONGODB_URI": {
+      "required": false,
+      "description": "Provided by Heroku - copied during PRs or available in env config"
     }
   },
   "formation": {
