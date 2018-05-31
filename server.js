@@ -23,6 +23,8 @@ const conversationId = 'CAHDCR2LD';
 //Botkit setup and config
 const BOTKIT_STUDIO_API         = process.env.BOTKIT_STUDIO_API;
 
+//database
+const SERVER_MONGO_URI = process.env.SERVER_MONGO_URI || null;
 
 
 //Botkit config
@@ -37,7 +39,15 @@ var bot_config = {
     debug: true,
     disable_startup_messages: false
 };
+
+if (SERVER_MONGO_URI) {
+    var mongoStorage = require('botkit-storage-mongo')({mongoUri: process.env.SERVER_MONGO_URI});
+    bot_options.storage = mongoStorage;
+} else {
     bot_options.json_file_store = path.join(__dirname, '/.data/db/'); // store user data in a simple JSON format
+}
+
+
 var botkitController = botkit.configure(SLACK_TOKEN, bot_config);
 
 
