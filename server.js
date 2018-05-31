@@ -30,23 +30,25 @@ const MONGODB_URI               = process.env.MONGODB_URI || null;
 
 //Botkit config
 var bot_config = {
-    //This should check if a db exists or not, also implicitly whether it's an app or a custom integration
-    studio_token: BOTKIT_STUDIO_API,
-    scopes: ['bot'],
-    clientId: SLACK_CLIENT_ID,
-    clientVerificationToken: SLACK_VERIFICATION_TOKEN,
-    clientSecret: SLACK_CLIENT_SECRET,
-    rtm_receive_messages: false,
-    debug: true,
-    disable_startup_messages: false
+  //This should check if a db exists or not, also implicitly whether it's an app or a custom integration
+  studio_token: BOTKIT_STUDIO_API,
+  scopes: ['bot'],
+  clientId: SLACK_CLIENT_ID,
+  clientVerificationToken: SLACK_VERIFICATION_TOKEN,
+  clientSecret: SLACK_CLIENT_SECRET,
+  rtm_receive_messages: false,
+  debug: true,
+  disable_startup_messages: false
 };
 
+  console.log("Utilizing mongodb: "+ MONGODB_URI);
+
 if (MONGODB_URI) {
-    var mongoStorage = require('botkit-storage-mongo')({mongoUri: MONGODB_URI});
-    bot_config.storage = mongoStorage;
-    console.log("Utilizing mongodb: "+ MONGODB_URI);
+  var mongoStorage = require('botkit-storage-mongo')({mongoUri: MONGODB_URI});
+  bot_config.storage = mongoStorage;
+  console.log("Utilizing mongodb: "+ MONGODB_URI);
 } else {
-    bot_config.json_file_store = path.join(__dirname, '/.data/db/'); // store user data in a simple JSON format
+  bot_config.json_file_store = path.join(__dirname, '/.data/db/'); // store user data in a simple JSON format
 }
 
 

@@ -42,7 +42,7 @@
       "required": true
     },
     "MONGODB_URI": {
-      "required": false,
+      "required": true,
       "description": "Provided by Heroku - copied during PRs or available in env config"
     }
   },
