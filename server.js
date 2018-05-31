@@ -15,8 +15,6 @@ const SLACK_TOKEN_BOT           = process.env.SLACK_TOKEN_BOT;
 const SLACK_VERIFICATION_TOKEN  = process.env.SLACK_VERIFICATION_TOKEN;
 const SLACK_TOKEN               = process.env.SLACK_TOKEN_BOT || SLACK_TOKEN_OAUTH;
 
-
-
 //Slack config. Should come from incoming requests
 const conversationId = 'CAHDCR2LD';
 
@@ -24,7 +22,10 @@ const conversationId = 'CAHDCR2LD';
 const BOTKIT_STUDIO_API         = process.env.BOTKIT_STUDIO_API;
 
 //database
-const SERVER_MONGO_URI = process.env.SERVER_MONGO_URI || null;
+const MONGODB_URI               = process.env.MONGODB_URI || null;
+
+
+
 
 
 //Botkit config
@@ -40,11 +41,11 @@ var bot_config = {
     disable_startup_messages: false
 };
 
-if (SERVER_MONGO_URI) {
-    var mongoStorage = require('botkit-storage-mongo')({mongoUri: process.env.SERVER_MONGO_URI});
-    bot_options.storage = mongoStorage;
+if (MONGODB_URI) {
+    var mongoStorage = require('botkit-storage-mongo')({mongoUri: MONGODB_URI});
+    bot_config.storage = mongoStorage;
 } else {
-    bot_options.json_file_store = path.join(__dirname, '/.data/db/'); // store user data in a simple JSON format
+    bot_config.json_file_store = path.join(__dirname, '/.data/db/'); // store user data in a simple JSON format
 }
 
 
