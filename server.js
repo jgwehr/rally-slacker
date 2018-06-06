@@ -15,8 +15,6 @@ const SLACK_TOKEN_BOT           = process.env.SLACK_TOKEN_BOT;
 const SLACK_VERIFICATION_TOKEN  = process.env.SLACK_VERIFICATION_TOKEN;
 const SLACK_TOKEN               = process.env.SLACK_TOKEN_BOT || SLACK_TOKEN_OAUTH;
 
-//Slack config. Should come from incoming requests
-const conversationId = 'CAHDCR2LD';
 
 //Botkit setup and config
 const BOTKIT_STUDIO_API         = process.env.BOTKIT_STUDIO_API;
