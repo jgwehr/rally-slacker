@@ -35,12 +35,11 @@ var bot_config = {
   clientVerificationToken: SLACK_VERIFICATION_TOKEN,
   clientSecret: SLACK_CLIENT_SECRET,
   rtm_receive_messages: false,
-  debug: true,
+  debug: DEBUG_TOGGLE,
   disable_startup_messages: false
 };
 
-  console.log("Utilizing mongodb: "+ MONGODB_URI);
-
+console.log("Utilizing mongodb: "+ MONGODB_URI);
 if (MONGODB_URI) {
   var mongoStorage = require('botkit-storage-mongo')({mongoUri: MONGODB_URI});
   bot_config.storage = mongoStorage;
@@ -71,6 +70,7 @@ console.log("Loading bot's skills...");
 var skillsPath = path.join(__dirname, "skills");
 fs.readdirSync(skillsPath).forEach(function(file) {
   require(skillsPath + path.sep + file)(botkitController);
+  console.log('Skill Loaded: '+file);
 });
 
 
