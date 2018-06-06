@@ -65,7 +65,7 @@ Botkit listeners
 
 // Set up a simple storage backend for keeping a record of customers
 // who sign up for the app via the oauth
-require(__dirname + '/lib/user_registration.js')(controller);
+require(__dirname + '/lib/user_registration.js')(botkitController);
 
 console.log("Loading bot's skills...");
 
