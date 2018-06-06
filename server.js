@@ -62,6 +62,11 @@ var express_webserver   = require('./lib/express_webserver')(botkitController);
 /*
 Botkit listeners
 */
+
+// Set up a simple storage backend for keeping a record of customers
+// who sign up for the app via the oauth
+require(__dirname + '/lib/user_registration.js')(controller);
+
 console.log("Loading bot's skills...");
 
 //This loads all skill modules in the /skills/ directory
