@@ -39,7 +39,6 @@ var bot_config = {
   disable_startup_messages: false
 };
 
-console.log("Utilizing mongodb: "+ MONGODB_URI);
 if (MONGODB_URI) {
   var mongoStorage = require('botkit-storage-mongo')({mongoUri: MONGODB_URI});
   bot_config.storage = mongoStorage;
