@@ -16,27 +16,38 @@ const SLACK_VERIFICATION_TOKEN  = process.env.SLACK_VERIFICATION_TOKEN;
 const SLACK_TOKEN               = process.env.SLACK_TOKEN_BOT || SLACK_TOKEN_OAUTH;
 
 
-
-//Slack config. Should come from incoming requests
-const conversationId = 'CAHDCR2LD';
-
 //Botkit setup and config
 const BOTKIT_STUDIO_API         = process.env.BOTKIT_STUDIO_API;
+
+//database
+const MONGODB_URI               = process.env.MONGODB_URI || null;
+
+
 
 
 
 //Botkit config
 var bot_config = {
-    //This should check if a db exists or not, also implicitly whether it's an app or a custom integration
-    json_file_store: path.join(__dirname, '/.data/db/'),
-    studio_token: BOTKIT_STUDIO_API,
-    scopes: ['bot'],
-    clientId: SLACK_CLIENT_ID,
-    clientVerificationToken: SLACK_VERIFICATION_TOKEN,
-    clientSecret: SLACK_CLIENT_SECRET,
-    debug: false,
-    disable_startup_messages: false
+  //This should check if a db exists or not, also implicitly whether it's an app or a custom integration
+  studio_token: BOTKIT_STUDIO_API,
+  scopes: ['bot'],
+  clientId: SLACK_CLIENT_ID,
+  clientVerificationToken: SLACK_VERIFICATION_TOKEN,
+  clientSecret: SLACK_CLIENT_SECRET,
+  rtm_receive_messages: false,
+  debug: DEBUG_TOGGLE,
+  disable_startup_messages: false
 };
+
+if (MONGODB_URI) {
+  var mongoStorage = require('botkit-storage-mongo')({mongoUri: MONGODB_URI});
+  bot_config.storage = mongoStorage;
+  console.log("Utilizing mongodb: "+ MONGODB_URI);
+} else {
+  bot_config.json_file_store = path.join(__dirname, '/.data/db/'); // store user data in a simple JSON format
+}
+
+
 var botkitController = botkit.configure(SLACK_TOKEN, bot_config);
 
 
@@ -47,12 +58,18 @@ var express_webserver   = require('./lib/express_webserver')(botkitController);
 /*
 Botkit listeners
 */
+
+// Set up a simple storage backend for keeping a record of customers
+// who sign up for the app via the oauth
+require(__dirname + '/lib/user_registration.js')(botkitController);
+
 console.log("Loading bot's skills...");
 
 //This loads all skill modules in the /skills/ directory
 var skillsPath = path.join(__dirname, "skills");
 fs.readdirSync(skillsPath).forEach(function(file) {
   require(skillsPath + path.sep + file)(botkitController);
+  console.log('Skill Loaded: '+file);
 });
 
 
