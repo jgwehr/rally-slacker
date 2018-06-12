@@ -4,7 +4,7 @@
   "description": "A Slack integration to the Rally Project Management tool",
   "main": "index.js",
   "dependencies": {
-    "@slack/client": "^4.3.0",
+    "@slack/client": "^4.3.1",
     "body-parser": "^1.18.3",
     "botkit": "^0.6.14",
     "botkit-storage-mongo": "^1.0.7",
